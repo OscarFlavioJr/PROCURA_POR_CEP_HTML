@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buscador de CEP</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="header">
+      <div class="icon-container">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c1.105 0 2-.672 2-1.5S13.105 8 12 8s-2 .672-2 1.5S10.895 11 12 11z"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 22C9.243 22 4 15.5 4 10a8 8 0 0116 0c0 5.5-5.243 12-8 12z"/>
+        </svg>
+        <h1 class="title">Buscador de CEP</h1>
+      </div>
+      <p class="subtitle">Encontre endereços completos no Brasil usando apenas o código postal</p>
+    </div>
+
+    <form class="form">
+      <input type="text" placeholder="Digite o CEP" class="input" />
+      <button type="submit" class="btn">Buscar</button>
+      <button type="reset" class="btn-clear">Limpar</button>
+    </form>
+
+    <div class="result">
+      <h2 class="result-title">Endereço encontrado:</h2>
+      <p><strong>Rua:</strong> Exemplo da Rua</p>
+      <p><strong>Bairro:</strong> Bairro Legal</p>
+      <p><strong>Cidade:</strong> São Paulo</p>
+      <p><strong>Estado:</strong> SP</p>
+      <p><strong>CEP:</strong> 01001-000</p>
+    </div>
+
+    <div class="footer">
+      <p>
+        Dados fornecidos pela API
+        <a href="https://viacep.com.br" target="_blank" rel="noopener noreferrer">ViaCEP</a>
+      </p>
+    </div>
+
+  </div>
+
+</body>
+<script src="script.js" defer></script>
+</html>
