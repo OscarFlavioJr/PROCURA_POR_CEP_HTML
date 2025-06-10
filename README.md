@@ -11,7 +11,8 @@ C - A página conta com alguns campos de input e Placeholder, que tem como funç
 <h3>R - Ao clicar no botão, deve ser feita uma requisição fetch para a API https://viacep.com.br/ws/{cep}/json/.</h3>
 C - O botão é tratado no Typescript, onde recebe a seguinte função:
 
-````form.addEventListener('submit', async (e) => {
+````
+   form.addEventListener('submit', async (e) => {
    e.preventDefault();
    const rawCEP = input.value.trim();
    const cep = formatCEP(rawCEP);
@@ -20,7 +21,7 @@ C - O botão é tratado no Typescript, onde recebe a seguinte função:
    return;
  }```
 
-
+````
 O Fetch (Recebedor de informações da API, pode ser visto na linha 54 do script.ts!)
 
 <h3>R - Os dados retornados devem ser exibidos no navegador: logradouro, bairro, localidade e UF.</h3>
@@ -31,25 +32,24 @@ C - O Sistema trata estes erros conforme pode ser visto nas seguintes funções:
 
 ````
 
-    form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const rawCEP = input.value.trim();
-    const cep = formatCEP(rawCEP);
-    if (!isValidCEP(cep))
-    {
-        showError("CEP inválido");
-        return;
-    }
-    else if (rawCEP === "" || rawCEP.length < 8)
-    {
+   form.addEventListener("submit", async (e) => {
+   e.preventDefault();
+   const rawCEP = input.value.trim();
+
+  if (rawCEP === "") {
     showError("Por favor, insira um CEP válido.");
     return;
+  }
+  if (rawCEP.length < 8) {
+    showError("CEP deve ter 8 dígitos.");
+    return;
+  }
 
 }
 
-```
+````
  E :
-```
+````
 
 function showError(message: string): void {
 result.innerHTML = `<p style="color: red; font-weight: bold;">${message}</p>`;
