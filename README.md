@@ -6,7 +6,7 @@ Professor: Marivaldo Pereira dos Santos
 Requisitos (R) e como foram cumpridos (C):
 
 <h3>R - A página deve conter um campo de entrada para o CEP e um botão para realizar a busca.</h3>
-C - A página conta com alguns campos de <input> e Placeholder, que tem como função demonstrar ao usuário onde colocar as informações necessárias.
+C - A página conta com alguns campos de input e Placeholder, que tem como função demonstrar ao usuário onde colocar as informações necessárias.
 
 <h3>R - Ao clicar no botão, deve ser feita uma requisição fetch para a API https://viacep.com.br/ws/{cep}/json/.</h3>
 C - O botão é tratado no Typescript, onde recebe a seguinte função:
