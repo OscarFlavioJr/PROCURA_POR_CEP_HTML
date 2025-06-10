@@ -7,18 +7,29 @@ type Address = {
   erro?: boolean;
 };
 
-const form = document.querySelector('form') as HTMLFormElement;
-const input = document.querySelector('input') as HTMLInputElement;
-const result = document.querySelector('.result') as HTMLDivElement;
-const resultTitle = result.querySelector('.result-title') as HTMLElement;
-const clearButton = document.querySelector('.btn-clear') as HTMLButtonElement;
+const form = document.querySelector("form") as HTMLFormElement;
+const input = document.querySelector("input") as HTMLInputElement;
+const result = document.querySelector(".result") as HTMLDivElement;
+const resultTitle = result.querySelector(".result-title") as HTMLElement;
+const clearButton = document.querySelector(".btn-clear") as HTMLButtonElement;
 
-form.addEventListener('submit', async (e) => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const rawCEP = input.value.trim();
+
+  if (rawCEP === "") {
+    showError("Por favor, insira um CEP válido.");
+    return;
+  }
+  if (rawCEP.length < 8) {
+    showError("CEP deve ter 8 dígitos.");
+    return;
+  }
+
   const cep = formatCEP(rawCEP);
+
   if (!isValidCEP(cep)) {
-    showError('CEP inválido');
+    showError("CEP inválido");
     return;
   }
 
@@ -28,22 +39,22 @@ form.addEventListener('submit', async (e) => {
   try {
     const address = await fetchAddress(cep);
     if (address.erro) {
-      showError('CEP não encontrado.');
+      showError("CEP não encontrado.");
     } else {
       showAddress(address);
     }
   } catch {
-    showError('Erro ao buscar o CEP.');
+    showError("Erro ao buscar o CEP.");
   }
 });
 
-clearButton.addEventListener('click', () => {
-  input.value = '';
+clearButton.addEventListener("click", () => {
+  input.value = "";
   clearResult();
 });
 
 function formatCEP(cep: string): string {
-  return cep.replace(/\D/g, '').replace(/(\d{5})(\d{3})/, '$1-$2');
+  return cep.replace(/\D/g, "").replace(/(\d{5})(\d{3})/, "$1-$2");
 }
 
 function isValidCEP(cep: string): boolean {
@@ -71,7 +82,7 @@ function showError(message: string): void {
 }
 
 function clearResult(): void {
-  result.innerHTML = '';
+  result.innerHTML = "";
 }
 
 function showLoading(): void {

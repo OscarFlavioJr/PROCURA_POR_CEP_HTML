@@ -35,21 +35,29 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 var _this = this;
-var form = document.querySelector('form');
-var input = document.querySelector('input');
-var result = document.querySelector('.result');
-var resultTitle = result.querySelector('.result-title');
-var clearButton = document.querySelector('.btn-clear');
-form.addEventListener('submit', function (e) { return __awaiter(_this, void 0, void 0, function () {
+var form = document.querySelector("form");
+var input = document.querySelector("input");
+var result = document.querySelector(".result");
+var resultTitle = result.querySelector(".result-title");
+var clearButton = document.querySelector(".btn-clear");
+form.addEventListener("submit", function (e) { return __awaiter(_this, void 0, void 0, function () {
     var rawCEP, cep, address, _a;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 e.preventDefault();
                 rawCEP = input.value.trim();
+                if (rawCEP === "") {
+                    showError("Por favor, insira um CEP válido.");
+                    return [2 /*return*/];
+                }
+                if (rawCEP.length < 8) {
+                    showError("CEP deve ter 8 dígitos.");
+                    return [2 /*return*/];
+                }
                 cep = formatCEP(rawCEP);
                 if (!isValidCEP(cep)) {
-                    showError('CEP inválido');
+                    showError("CEP inválido");
                     return [2 /*return*/];
                 }
                 clearResult();
@@ -61,7 +69,7 @@ form.addEventListener('submit', function (e) { return __awaiter(_this, void 0, v
             case 2:
                 address = _b.sent();
                 if (address.erro) {
-                    showError('CEP não encontrado.');
+                    showError("CEP não encontrado.");
                 }
                 else {
                     showAddress(address);
@@ -69,18 +77,18 @@ form.addEventListener('submit', function (e) { return __awaiter(_this, void 0, v
                 return [3 /*break*/, 4];
             case 3:
                 _a = _b.sent();
-                showError('Erro ao buscar o CEP.');
+                showError("Erro ao buscar o CEP.");
                 return [3 /*break*/, 4];
             case 4: return [2 /*return*/];
         }
     });
 }); });
-clearButton.addEventListener('click', function () {
-    input.value = '';
+clearButton.addEventListener("click", function () {
+    input.value = "";
     clearResult();
 });
 function formatCEP(cep) {
-    return cep.replace(/\D/g, '').replace(/(\d{5})(\d{3})/, '$1-$2');
+    return cep.replace(/\D/g, "").replace(/(\d{5})(\d{3})/, "$1-$2");
 }
 function isValidCEP(cep) {
     return /^\d{5}-?\d{3}$/.test(cep);
@@ -105,7 +113,7 @@ function showError(message) {
     result.innerHTML = "<p style=\"color: red; font-weight: bold;\">".concat(message, "</p>");
 }
 function clearResult() {
-    result.innerHTML = '';
+    result.innerHTML = "";
 }
 function showLoading() {
     result.innerHTML = "<p>Carregando...</p>";
